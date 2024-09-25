@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Streaming Logs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #121212;
+      color: #e0e0e0;
+      height: 100%;
+      width: 100%;
+    }
+    #deployForm {
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    #deployForm input {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #333;
+      border-radius: 3px;
+      background-color: #2c2c2c;
+      color: #e0e0e0;
+    }
+    #deployForm button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    #deployForm button:hover {
+      background-color: #0056b3;
+    }
+    #logs {
+      margin-top: 20px;
+      padding: 20px;
+      background: #1e1e1e;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      max-width: 800px;
+      margin: 20px auto;
+      white-space: pre-wrap;       
+      color: #e0e0e0;
+    }
+    .container {
+      margin-top: 50px;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <form id="deployForm">
+      <input type="url" name="githubRepoUrl" placeholder="Github Repo URL" required>
+      <input type="text" name="buildCommand" placeholder="Build Command" required>
+      <button type="submit">Deploy</button>
+    </form>
+
+    <pre id="logs">
+      Build logs will appear here...
+    </pre>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/index.js"></script>
+
+</body>
+</html>
