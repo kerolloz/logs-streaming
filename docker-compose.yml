@@ -26,6 +26,20 @@ services:
       - redis
       - kafka1
 
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - api
+
   zoo1:
     image: confluentinc/cp-zookeeper:7.7.1
     hostname: zoo1
@@ -64,3 +78,5 @@ services:
 
 volumes:
   redis-data:
+  caddy_data:
+  caddy_config:

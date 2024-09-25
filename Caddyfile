@@ -1,0 +1,8 @@
+example.com {
+  header /* {
+    -Server
+  }
+
+  encode zstd gzip
+  reverse_proxy api:3000 # or whatever port defined in your .env file
+}
