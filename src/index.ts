@@ -1,19 +1,19 @@
+import path from 'node:path';
 import cors from '@fastify/cors';
 import helmet from '@fastify/helmet';
+import fastifyStatic from '@fastify/static';
 import fastify from 'fastify';
+import fastifyIO from 'fastify-socket.io';
 import {
+  type ZodTypeProvider,
   serializerCompiler,
   validatorCompiler,
-  type ZodTypeProvider,
 } from 'fastify-type-provider-zod';
 import { ZodError } from 'zod';
 import { env } from './lib/env';
+import { kafkaClient } from './lib/kafka';
 import { SWAGGER_ROUTE, registerSwagger } from './lib/swagger';
 import { registerAllRoutes } from './routes';
-import fastifyIO from 'fastify-socket.io';
-import { kafkaClient } from './lib/kafka';
-import fastifyStatic from '@fastify/static';
-import path from 'node:path';
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -36,7 +36,7 @@ app.setErrorHandler((error, _, reply) =>
 
 app.after(() => registerAllRoutes(app));
 
-app.listen({ port: env('PORT') }, (err, address) => {
+app.listen({ host: '0.0.0.0', port: env('PORT') }, (err, address) => {
   if (err) {
     console.error(err);
     process.exit(1);
