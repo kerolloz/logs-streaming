@@ -26,7 +26,7 @@ form.addEventListener('submit', (event) => {
     buildCommand: form.buildCommand.value
   };
 
-  fetch(`/deployments`, {
+  fetch('/deployments', {
     method: 'POST',
     body: JSON.stringify(body),
     headers: { 'Content-Type': 'application/json' }

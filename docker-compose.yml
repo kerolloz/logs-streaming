@@ -24,6 +24,7 @@ services:
     command: bun worker
     depends_on:
       - redis
+      - kafka1
 
   zoo1:
     image: confluentinc/cp-zookeeper:7.7.1
