@@ -3,5 +3,5 @@ import { env } from './env';
 
 export const kafkaClient = new Kafka({
   clientId: 'my-app',
-  brokers: [env('KAFKA_CONNECTION_STRING')],
+  brokers: ['kafka1:9092'],
 });

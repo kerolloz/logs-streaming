@@ -5,7 +5,7 @@ import z from 'zod';
 const envList = z.object({
   PORT: z.coerce.number().default(3000),
   REDIS_URL: z.string().url().describe('the url to connect to Redis'),
-  KAFKA_CONNECTION_STRING: z.string().url(),
+  KAFKA_CONNECTION_STRING: z.string(),
 });
 
 const safeEnv = envList.parse(process.env);
