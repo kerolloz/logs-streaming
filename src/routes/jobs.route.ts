@@ -11,9 +11,6 @@ export default (app: FastifyZodInstance) =>
         githubRepoUrl: z.string().url(),
         buildCommand: z.string(),
       }),
-      querystring: z.object({
-        branch: z.string().optional(),
-      }),
       response: {
         200: z.object({
           message: z.string(),
