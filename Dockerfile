@@ -6,7 +6,7 @@ COPY ./src ./src
 RUN bun install --production
 
 FROM base AS release
-COPY --from=base /usr/src/app/ .
 RUN apt update && apt install git -y
+COPY --from=base /usr/src/app/ .
 
 ENV NODE_ENV production
